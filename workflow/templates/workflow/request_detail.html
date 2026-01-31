@@ -1,0 +1,140 @@
+{% extends "workflow/base.html" %}
+
+{% block content %}
+<style>
+  .request-header {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid #f0f0f0;
+  }
+
+  .request-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+  }
+
+  .detail-card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    margin-bottom: 2rem;
+    max-height: 60vh;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scrollbar-width: auto;
+    scrollbar-color: #667eea #e8eaef;
+  }
+
+  .detail-card::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  .detail-card::-webkit-scrollbar-track {
+    background: #e8eaef;
+    border-radius: 10px;
+  }
+
+  .detail-card::-webkit-scrollbar-thumb {
+    background: #667eea;
+    border-radius: 10px;
+    border: 2px solid #e8eaef;
+  }
+
+  .detail-card::-webkit-scrollbar-thumb:hover {
+    background: #764ba2;
+  }
+
+  .detail-item {
+    padding: 1.25rem;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .detail-item:last-child {
+    border-bottom: none;
+  }
+
+  .detail-label {
+    font-weight: 600;
+    color: #2c3e50;
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #6b7280;
+  }
+
+  .detail-value {
+    color: #2c3e50;
+    font-size: 1rem;
+  }
+
+  .badge {
+    padding: 0.5rem 0.875rem;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 0.85rem;
+  }
+
+  .action-buttons {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 2rem;
+  }
+
+  .action-buttons .btn {
+    padding: 0.6rem 1.2rem;
+    font-weight: 600;
+  }
+</style>
+
+  <div class="request-header">
+    <h1 class="request-title">{{ request_obj.title }}</h1>
+    <p style="color: #6b7280; margin: 0;">Request #{{ request_obj.id }}</p>
+  </div>
+
+  <div class="card detail-card">
+    <div class="detail-item">
+      <span class="detail-label">Description</span>
+      <p class="detail-value">{{ request_obj.description }}</p>
+    </div>
+
+    <div class="detail-item">
+      <span class="detail-label">Status</span>
+      <span class="badge bg-info">{{ request_obj.status }}</span>
+    </div>
+
+    <div class="detail-item">
+      <span class="detail-label">Requester</span>
+      <p class="detail-value">{{ request_obj.requester.name }}</p>
+    </div>
+
+    <div class="detail-item">
+      <span class="detail-label">Approver</span>
+      <p class="detail-value">{{ request_obj.approver.name }}</p>
+    </div>
+
+    <div class="detail-item">
+      <span class="detail-label">Created</span>
+      <p class="detail-value">{{ request_obj.created_at|date:"Y-m-d H:i" }}</p>
+    </div>
+
+    {% if request_obj.due_date %}
+      <div class="detail-item">
+        <span class="detail-label">Due Date</span>
+        <p class="detail-value">{{ request_obj.due_date }}</p>
+      </div>
+    {% endif %}
+  </div>
+
+  <div class="action-buttons">
+    {% if employee == request_obj.approver and request_obj.status == "PENDING" %}
+      <a href="{% url 'request_approve' request_obj.id %}" class="btn btn-success">Approve</a>
+      <a href="{% url 'request_reject' request_obj.id %}" class="btn btn-danger">Reject</a>
+    {% endif %}
+    <a href="{% url 'request_list' %}" class="btn btn-secondary">Back to List</a>
+  </div>
+
+{% endblock %}
