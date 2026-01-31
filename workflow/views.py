@@ -352,10 +352,10 @@ def request_create(request):
   if request.method == "POST":
     form = WorkflowRequestForm(request.POST)
     if form.is_valid():
-      approver_name = form.cleaned_data.get("approver")
+      approver_id = form.cleaned_data.get("approver")
       approver = None
-      if approver_name:
-        approver = Employee.objects(name=approver_name).first()
+      if approver_id:
+        approver = Employee.objects(id=approver_id).first()
 
       req = WorkflowRequest(
         title=form.cleaned_data["title"],
@@ -366,6 +366,7 @@ def request_create(request):
       )
       req.save()
       return redirect("workflow:request_list")
+
   else:
     form = WorkflowRequestForm()
 

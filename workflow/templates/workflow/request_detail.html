@@ -5,7 +5,19 @@
 <h3 class="mb-3">{{ request_obj.title }}</h3>
 
 <p><strong>Description:</strong> {{ request_obj.description }}</p>
-<p><strong>Status:</strong> <span class="badge badge-{{ request_obj.status|lower }}">{{ request_obj.status }}</span></p>
+
+<p><strong>Status:</strong> <span class="badge 
+  {% if request_obj.status == 'PENDING' %}bg-warning text-dark
+  {% elif request_obj.status == 'APPROVED' %}bg-success
+  {% elif request_obj.status == 'REJECTED' %}bg-danger
+  {% elif request_obj.status == 'IN_PROGRESS' %}bg-info text-dark
+  {% elif request_obj.status == 'COMPLETED' %}bg-primary
+  {% endif %}
+">
+  {{ request_obj.status }}
+</span>
+</p>
+
 <p><strong>Requester:</strong> {{ request_obj.requester.name }}</p>
 
 <p><strong>Approver:</strong>
