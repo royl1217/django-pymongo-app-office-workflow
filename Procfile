@@ -1,1 +1,1 @@
-web: gunicorn django-pymongo-app-office-workflow.wsgi
+web: gunicorn config.wsgi:application

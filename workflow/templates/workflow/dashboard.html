@@ -1,85 +1,16 @@
 {% extends "workflow/base.html" %}
+{% block title %}Dashboard{% endblock %}
 
 {% block content %}
-  <style>
-    .stat-card {
-      border: none;
-      border-radius: 12px;
-      background: #fff;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-      transition: all 0.3s ease;
-      overflow: hidden;
-    }
+<h3 class="mb-4">Workflow Summary</h3>
 
-    .stat-card:hover {
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
-      transform: translateY(-4px);
-    }
+<div class="row g-3">
+  <div class="col-md-2"><div class="alert alert-secondary text-center">Pending<br><strong>{{ pending }}</strong></div></div>
+  <div class="col-md-2"><div class="alert alert-success text-center">Approved<br><strong>{{ approved }}</strong></div></div>
+  <div class="col-md-2"><div class="alert alert-danger text-center">Rejected<br><strong>{{ rejected }}</strong></div></div>
+  <div class="col-md-2"><div class="alert alert-warning text-center">In Progress<br><strong>{{ in_progress }}</strong></div></div>
+  <div class="col-md-2"><div class="alert alert-info text-center">Completed<br><strong>{{ completed }}</strong></div></div>
+</div>
 
-    .stat-card.pending {
-      border-left: 4px solid #667eea;
-    }
-
-    .stat-card.approved {
-      border-left: 4px solid #10b981;
-    }
-
-    .stat-card.rejected {
-      border-left: 4px solid #ef4444;
-    }
-
-    .stat-card-body {
-      padding: 2rem 1.5rem;
-    }
-
-    .stat-card-title {
-      font-size: 0.9rem;
-      color: #6b7280;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      margin-bottom: 1rem;
-    }
-
-    .stat-card-value {
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: #2c3e50;
-    }
-  </style>
-
-  <h2 class="mb-5">Welcome, {{ employee.name }}</h2>
-
-  <div class="row g-4 mb-5">
-
-    <div class="col-md-4">
-      <div class="card stat-card pending">
-        <div class="stat-card-body">
-          <p class="stat-card-title">Pending</p>
-          <p class="stat-card-value">{{ pending }}</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-4">
-      <div class="card stat-card approved">
-        <div class="stat-card-body">
-          <p class="stat-card-title">Approved</p>
-          <p class="stat-card-value">{{ approved }}</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-md-4">
-      <div class="card stat-card rejected">
-        <div class="stat-card-body">
-          <p class="stat-card-title">Rejected</p>
-          <p class="stat-card-value">{{ rejected }}</p>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <a href="{% url 'request_create' %}" class="btn btn-primary btn-lg">Create New Request</a>
+<a href="{% url 'workflow:request_list' %}" class="btn btn-primary mt-4">View Requests</a>
 {% endblock %}

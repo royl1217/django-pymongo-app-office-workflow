@@ -1,6 +1,8 @@
 from django.urls import path
 from . import views
 
+app_name = "workflow"
+
 urlpatterns = [
   # Authentication
   path("register/", views.register, name="register"),
@@ -19,4 +21,3 @@ urlpatterns = [
   path("requests/<str:pk>/approve/", views.request_approve, name="request_approve"),
   path("requests/<str:pk>/reject/", views.request_reject, name="request_reject"),
 ]
-

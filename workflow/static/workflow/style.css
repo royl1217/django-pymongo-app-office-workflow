@@ -1,0 +1,132 @@
+/* -------------------------------------------------------
+   Global Layout
+------------------------------------------------------- */
+body {
+  background-color: #f5f7fa;
+  font-family: "Inter", "Segoe UI", Arial, sans-serif;
+  color: #333;
+}
+
+.container {
+  max-width: 960px;
+}
+
+/* -------------------------------------------------------
+   Cards
+------------------------------------------------------- */
+.card {
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.card-body {
+  padding: 2rem;
+}
+
+/* -------------------------------------------------------
+   Buttons
+------------------------------------------------------- */
+.btn {
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  font-weight: 500;
+}
+
+.btn-primary {
+  background-color: #0057d9;
+  border-color: #0057d9;
+}
+
+.btn-primary:hover {
+  background-color: #0047b3;
+}
+
+.btn-success {
+  background-color: #1a9c5d;
+  border-color: #1a9c5d;
+}
+
+.btn-success:hover {
+  background-color: #157c4a;
+}
+
+.btn-danger {
+  background-color: #d64545;
+  border-color: #d64545;
+}
+
+.btn-danger:hover {
+  background-color: #b73737;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+/* -------------------------------------------------------
+   Navbar
+------------------------------------------------------- */
+.navbar {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.navbar-brand {
+  font-weight: 600;
+}
+
+/* -------------------------------------------------------
+   Forms
+------------------------------------------------------- */
+form p {
+  margin-bottom: 1rem;
+}
+
+input,
+textarea,
+select {
+  border-radius: 6px !important;
+}
+
+/* -------------------------------------------------------
+   Lists
+------------------------------------------------------- */
+.list-group-item {
+  border: none;
+  border-bottom: 1px solid #eee;
+  padding: 1rem 1.2rem;
+}
+
+.list-group-item:last-child {
+  border-bottom: none;
+}
+
+/* -------------------------------------------------------
+   Status Badges
+------------------------------------------------------- */
+.badge {
+  padding: 0.5rem 0.7rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+}
+
+.badge-pending {
+  background-color: #ffc107;
+}
+
+.badge-approved {
+  background-color: #28a745;
+}
+
+.badge-rejected {
+  background-color: #dc3545;
+}
+
+.badge-progress {
+  background-color: #17a2b8;
+}
+
+.badge-completed {
+  background-color: #6f42c1;
+}
