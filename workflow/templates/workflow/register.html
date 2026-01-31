@@ -5,20 +5,27 @@
 {% block content %}
 <div class="row justify-content-center">
   <div class="col-md-4">
-    <div class="card shadow-sm">
-      <div class="card-body">
-        <h3 class="text-center mb-4">Create Account</h3>
+    <div class="card shadow-sm p-3">
+      <h3 class="text-center mb-4">Create Account</h3>
 
-        <form method="post">
-          {% csrf_token %}
-          {{ form.as_p }}
+      <form method="post">
+        {% csrf_token %}
 
-          <button type="submit" class="btn btn-success w-100">Register</button>
-        </form>
-
-        <div class="text-center mt-3">
-          <a href="{% url 'workflow:login' %}">Already have an account?</a>
+        <div class="mb-3">
+          <label class="form-label">Username</label>
+          <input type="text" name="username" class="form-control form-control-lg" placeholder="Choose a username" required>
         </div>
+
+        <div class="mb-3">
+          <label class="form-label">Password</label>
+          <input type="password" name="password" class="form-control form-control-lg" placeholder="Create a password" required>
+        </div>
+
+        <button type="submit" class="btn btn-success w-100 btn-lg">Register</button>
+      </form>
+
+      <div class="text-center mt-3">
+        <a href="{% url 'workflow:login' %}">Already have an account?</a>
       </div>
     </div>
   </div>
